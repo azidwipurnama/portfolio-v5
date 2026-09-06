@@ -1,0 +1,155 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import type { NavItem } from "@/types";
+
+const navItems: NavItem[] = [
+  { id: "home", label: "Home", href: "/" },
+  { id: "portfolio", label: "Portfolio", href: "/#portfolio" },
+  { id: "about", label: "About", href: "/#about" },
+];
+
+const Navbar = () => {
+  const [activeSection, setActiveSection] = useState("home");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      const sections = document.querySelectorAll("section[id]");
+      let current = "home";
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 150 && rect.bottom >= 150) {
+          current = section.id;
+        }
+      });
+
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavClick = (href: string, id: string) => {
+    setActiveSection(id);
+    setIsMobileMenuOpen(false);
+    if (href.startsWith("/#")) {
+      const el = document.getElementById(href.substring(2));
+      el?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <nav
+      className={cn(
+        "fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between gap-2 px-6 py-3 rounded-full border transition-all duration-300",
+        scrolled
+          ? "bg-slate-950/60 border-slate-800/60 backdrop-blur-md shadow-lg shadow-black/20"
+          : "bg-slate-950/40 border-slate-800/40 backdrop-blur-sm hover:border-slate-700/60"
+      )}
+    >
+      {/* Logo */}
+      <Link href="/" className="text-xl font-bold gradient-text">
+        AZ
+      </Link>
+
+      {/* Desktop Nav */}
+      <div className="hidden md:flex items-center gap-2">
+        {navItems.map((item) => (
+          <Link
+            key={item.id}
+            href={item.href}
+            onClick={() => handleNavClick(item.href, item.id)}
+            className={cn(
+              "relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300",
+              activeSection === item.id
+                ? "text-white"
+                : "text-slate-400 hover:text-slate-200"
+            )}
+          >
+            {activeSection === item.id && (
+              <motion.div
+                layoutId="nav-indicator"
+                className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-cyan-500/20 rounded-full -z-1"
+              />
+            )}
+            <span className="relative z-1">{item.label}</span>
+          </Link>
+        ))}
+      </div>
+
+      {/* Mobile Menu Button */}
+      <button
+        className="md:hidden p-2 rounded-full bg-slate-800/50 hover:bg-slate-700/50 text-slate-300 hover:text-white transition-all duration-200"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-label="Toggle menu"
+      >
+        <AnimatePresence mode="wait">
+          {isMobileMenuOpen ? (
+            <motion.div
+              key="close"
+              initial={{ opacity: 0, rotate: 90 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              exit={{ opacity: 0, rotate: -90 }}
+              transition={{ duration: 0.15 }}
+            >
+              <X size={20} />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="menu"
+              initial={{ opacity: 0, rotate: -90 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              exit={{ opacity: 0, rotate: 90 }}
+              transition={{ duration: 0.15 }}
+            >
+              <Menu size={20} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </button>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-full mt-2 right-0 w-48 bg-slate-900/90 backdrop-blur-md border border-slate-800/80 rounded-xl shadow-xl shadow-black/40"
+          >
+            <div className="flex flex-col p-2 gap-1">
+              {navItems.map((item) => (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  onClick={() => handleNavClick(item.href, item.id)}
+                  className={cn(
+                    "px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200",
+                    activeSection === item.id
+                      ? "text-white bg-gradient-to-r from-indigo-500/20 to-purple-500/20"
+                      : "text-slate-400 hover:text-white hover:bg-slate-800/50"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+};
+
+export default Navbar;
