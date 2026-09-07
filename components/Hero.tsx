@@ -5,6 +5,7 @@ import { Mail, Download } from "lucide-react";
 import GitHubIcon from "@/components/icons/GitHubIcon";
 import LinkedInIcon from "@/components/icons/LinkedInIcon";
 import Link from "next/link";
+import TechMarquee from "@/components/TechMarquee";
 import type { SocialLink, StatBadge } from "@/types";
 
 const socialLinks: SocialLink[] = [
@@ -105,22 +106,8 @@ const Hero = () => {
             real-world threats through cybersecurity engineering.
           </motion.p>
 
-          {/* Tech Stack Tags */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-2 mb-10"
-            variants={itemVariants}
-          >
-            {["JavaScript", "PHP", "Python", "Bootstrap", "Tailwind CSS", "Next.js"].map(
-              (tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1 text-xs font-medium rounded-full bg-slate-900/40 border border-emerald-900/30 text-slate-300 hover:text-emerald-300 hover:border-emerald-800/40 transition-colors"
-                >
-                  {tech}
-                </span>
-              )
-            )}
-          </motion.div>
+          {/* Tech Marquee (full-width infinite scroll) */}
+          <TechMarquee />
 
           {/* CTA Buttons + Stat Badges (merged single row) */}
           <motion.div
