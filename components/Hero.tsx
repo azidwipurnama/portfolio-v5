@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Download } from "lucide-react";
+import { Mail } from "lucide-react";
 import GitHubIcon from "@/components/icons/GitHubIcon";
 import LinkedInIcon from "@/components/icons/LinkedInIcon";
 import Link from "next/link";
 import TechRotator from "@/components/TechRotator";
-import type { SocialLink, StatBadge } from "@/types";
+import type { SocialLink } from "@/types";
 
 const socialLinks: SocialLink[] = [
   {
@@ -29,22 +29,10 @@ const socialLinks: SocialLink[] = [
   },
 ];
 
-const statBadges: StatBadge[] = [
-  {
-    label: "Years Experience",
-    value: "3+",
-    icon: <span className="text-2xl">🚀</span>,
-  },
-  {
-    label: "Projects Completed",
-    value: "15+",
-    icon: <span className="text-2xl">📁</span>,
-  },
-  {
-    label: "Tech Skills",
-    value: "12+",
-    icon: <span className="text-2xl">⚡</span>,
-  },
+const stats: { value: string; label: string }[] = [
+  { value: "3+", label: "Years Experience" },
+  { value: "15+", label: "Projects Completed" },
+  { value: "12+", label: "Tech Skills" },
 ];
 
 const containerVariants = {
@@ -109,59 +97,48 @@ const Hero = () => {
           {/* Tech Rotator (auto-rotate carousel) */}
           <TechRotator />
 
-          {/* CTA Buttons + Stat Badges (merged single row) */}
+          {/* ROW 1 — Actionable Buttons */}
           <motion.div
-            className="flex flex-wrap md:flex-nowrap justify-center items-center gap-3 mb-12"
+            className="flex justify-center gap-4 mb-8"
             variants={itemVariants}
           >
             <Link href="/#portfolio">
               <motion.button
-                className="group relative flex-shrink-0 flex items-center justify-center gap-2 px-7 py-3 rounded-full font-medium transition-all duration-300"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
+                className="whitespace-nowrap px-8 py-3.5 rounded-full font-medium text-base bg-slate-900/40 border border-emerald-900/30 text-white hover:bg-emerald-900/20 transition-all duration-200"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <span className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-mint-500 opacity-100 blur group-hover:opacity-90 transition-opacity duration-300" />
-                <span className="absolute inset-0.5 rounded-full bg-slate-900" />
-                <span className="relative flex items-center gap-2 text-white">
-                  View Projects
-                  <svg
-                    className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </span>
+                View Projects
               </motion.button>
             </Link>
 
             <motion.button
-              className="group relative flex-shrink-0 flex items-center justify-center gap-2 px-7 py-3 rounded-full font-medium border border-emerald-900/40 text-slate-300 hover:text-white transition-all duration-300"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+              className="whitespace-nowrap px-8 py-3.5 rounded-full font-medium text-base bg-slate-900/40 border border-emerald-900/30 text-white hover:bg-emerald-900/20 transition-all duration-200"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <span className="absolute inset-0 rounded-full bg-emerald-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <Download size={16} className="relative" />
               Download CV
             </motion.button>
+          </motion.div>
 
-            {statBadges.map((stat) => (
-              <motion.div
+          {/* ROW 2 — Stats (plain text, non-clickable) */}
+          <motion.div
+            className="flex justify-center items-center gap-0.5 mb-12 text-sm"
+            variants={itemVariants}
+          >
+            {stats.map((stat, i) => (
+              <motion.span
                 key={stat.label}
-                className="flex-shrink-0 flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/40 border border-emerald-900/30 text-slate-300 hover:text-white hover:border-emerald-800/40 transition-all duration-300"
-                whileHover={{ scale: 1.05, y: -2 }}
+                className="flex items-center"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 + 0.2 }}
               >
-                {stat.icon}
-                <span className="font-semibold text-white text-sm">{stat.value}</span>
-                <span className="text-xs">{stat.label}</span>
-              </motion.div>
+                <span className="font-semibold text-emerald-300">{stat.value}</span>
+                <span className="mx-1.5 text-slate-500">·</span>
+                <span className="text-slate-400">{stat.label}</span>
+                {i < stats.length - 1 && <span className="mx-3 text-slate-600/50" />}
+              </motion.span>
             ))}
           </motion.div>
 
