@@ -81,7 +81,7 @@ const Navbar = () => {
               {activeSection === item.id && (
                 <motion.div
                   layoutId="active-pill"
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-mint-500/20"
+                  className="absolute inset-0 rounded-full bg-emerald-500/80"
                 />
               )}
               <span className="relative z-1">{item.label}</span>
@@ -139,7 +139,7 @@ const Navbar = () => {
                     className={cn(
                       "px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200",
                       activeSection === item.id
-                        ? "text-white bg-gradient-to-r from-emerald-500/20 to-teal-500/20"
+                        ? "text-white bg-emerald-500/80"
                         : "text-slate-400 hover:text-white hover:bg-slate-800/50"
                     )}
                   >
