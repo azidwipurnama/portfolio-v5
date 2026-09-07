@@ -122,14 +122,14 @@ const Hero = () => {
             )}
           </motion.div>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons + Stat Badges (merged single row) */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+            className="flex flex-wrap md:flex-nowrap justify-center items-center gap-3 mb-12"
             variants={itemVariants}
           >
             <Link href="/#portfolio">
               <motion.button
-                className="group relative flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium transition-all duration-300"
+                className="group relative flex-shrink-0 flex items-center justify-center gap-2 px-7 py-3 rounded-full font-medium transition-all duration-300"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -138,7 +138,7 @@ const Hero = () => {
                 <span className="relative flex items-center gap-2 text-white">
                   View Projects
                   <svg
-                    className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200"
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -156,30 +156,24 @@ const Hero = () => {
             </Link>
 
             <motion.button
-              className="group relative flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium border border-emerald-900/40 text-slate-300 hover:text-white transition-all duration-300"
+              className="group relative flex-shrink-0 flex items-center justify-center gap-2 px-7 py-3 rounded-full font-medium border border-emerald-900/40 text-slate-300 hover:text-white transition-all duration-300"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
               <span className="absolute inset-0 rounded-full bg-emerald-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <Download size={18} className="relative" />
+              <Download size={16} className="relative" />
               Download CV
             </motion.button>
-          </motion.div>
 
-          {/* Stat Badges */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-6 mb-12"
-            variants={itemVariants}
-          >
             {statBadges.map((stat) => (
               <motion.div
                 key={stat.label}
-                className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-900/40 border border-emerald-900/30 text-slate-300 hover:text-white hover:border-emerald-800/40 transition-all duration-300"
+                className="flex-shrink-0 flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/40 border border-emerald-900/30 text-slate-300 hover:text-white hover:border-emerald-800/40 transition-all duration-300"
                 whileHover={{ scale: 1.05, y: -2 }}
               >
                 {stat.icon}
-                <span className="font-semibold text-white">{stat.value}</span>
-                <span className="text-sm">{stat.label}</span>
+                <span className="font-semibold text-white text-sm">{stat.value}</span>
+                <span className="text-xs">{stat.label}</span>
               </motion.div>
             ))}
           </motion.div>
