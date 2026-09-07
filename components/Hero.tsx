@@ -5,7 +5,7 @@ import { Mail, Download } from "lucide-react";
 import GitHubIcon from "@/components/icons/GitHubIcon";
 import LinkedInIcon from "@/components/icons/LinkedInIcon";
 import Link from "next/link";
-import TechMarquee from "@/components/TechMarquee";
+import TechRotator from "@/components/TechRotator";
 import type { SocialLink, StatBadge } from "@/types";
 
 const socialLinks: SocialLink[] = [
@@ -106,8 +106,8 @@ const Hero = () => {
             real-world threats through cybersecurity engineering.
           </motion.p>
 
-          {/* Tech Marquee (full-width infinite scroll) */}
-          <TechMarquee />
+          {/* Tech Rotator (auto-rotate carousel) */}
+          <TechRotator />
 
           {/* CTA Buttons + Stat Badges (merged single row) */}
           <motion.div
