@@ -49,105 +49,108 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={cn(
-        "fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between gap-2 px-6 py-3 rounded-full border transition-all duration-300",
-        scrolled
-          ? "bg-slate-950/60 border-slate-800/60 backdrop-blur-md shadow-lg shadow-black/20"
-          : "bg-slate-950/40 border-slate-800/40 backdrop-blur-sm hover:border-slate-700/60"
-      )}
-    >
-      {/* Logo */}
-      <Link href="/" className="text-xl font-bold gradient-text">
-        AZ
-      </Link>
-
-      {/* Desktop Nav */}
-      <div className="hidden md:flex items-center gap-2">
-        {navItems.map((item) => (
-          <Link
-            key={item.id}
-            href={item.href}
-            onClick={() => handleNavClick(item.href, item.id)}
-            className={cn(
-              "relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300",
-              activeSection === item.id
-                ? "text-white"
-                : "text-slate-400 hover:text-slate-200"
-            )}
-          >
-            {activeSection === item.id && (
-              <motion.div
-                layoutId="nav-indicator"
-                className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-cyan-500/20 rounded-full -z-1"
-              />
-            )}
-            <span className="relative z-1">{item.label}</span>
-          </Link>
-        ))}
-      </div>
-
-      {/* Mobile Menu Button */}
-      <button
-        className="md:hidden p-2 rounded-full bg-slate-800/50 hover:bg-slate-700/50 text-slate-300 hover:text-white transition-all duration-200"
-        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        aria-label="Toggle menu"
+    <nav className="fixed top-0 left-0 right-0 z-50 w-full border-b border-emerald-800/30 bg-[#040D0A]/80 backdrop-blur-lg transition-all duration-300">
+      <div
+        className={cn(
+          "flex items-center justify-between w-full px-6 md:px-12 py-4 transition-all duration-300",
+          scrolled && "py-3"
+        )}
       >
-        <AnimatePresence mode="wait">
-          {isMobileMenuOpen ? (
-            <motion.div
-              key="close"
-              initial={{ opacity: 0, rotate: 90 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: -90 }}
-              transition={{ duration: 0.15 }}
+        {/* Logo — Benar-benar Ujung Kiri */}
+        <Link
+          href="/"
+          className="text-lg md:text-xl font-bold tracking-tight text-white hover:text-emerald-400 transition-colors flex-shrink-0"
+        >
+          AZI DWIPURNAMA
+        </Link>
+
+        {/* Desktop Nav — Benar-benar Ujung Kanan */}
+        <div className="hidden md:flex items-center gap-1">
+          {navItems.map((item) => (
+            <Link
+              key={item.id}
+              href={item.href}
+              onClick={() => handleNavClick(item.href, item.id)}
+              className={cn(
+                "relative px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-300",
+                activeSection === item.id
+                  ? "text-white"
+                  : "text-slate-400 hover:text-slate-200"
+              )}
             >
-              <X size={20} />
-            </motion.div>
-          ) : (
+              {activeSection === item.id && (
+                <motion.div
+                  layoutId="active-pill"
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-mint-500/20"
+                />
+              )}
+              <span className="relative z-1">{item.label}</span>
+            </Link>
+          ))}
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 rounded-full bg-emerald-950/30 hover:bg-emerald-900/40 text-slate-300 hover:text-white transition-all duration-200"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <AnimatePresence mode="wait">
+            {isMobileMenuOpen ? (
+              <motion.div
+                key="close"
+                initial={{ opacity: 0, rotate: 90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0, rotate: -90 }}
+                transition={{ duration: 0.15 }}
+              >
+                <X size={20} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="menu"
+                initial={{ opacity: 0, rotate: -90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0, rotate: 90 }}
+                transition={{ duration: 0.15 }}
+              >
+                <Menu size={20} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </button>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
             <motion.div
-              key="menu"
-              initial={{ opacity: 0, rotate: -90 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: 90 }}
-              transition={{ duration: 0.15 }}
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-full right-6 md:right-12 mt-2 w-48 bg-[#040D0A]/90 backdrop-blur-md border border-emerald-900/30 rounded-xl shadow-xl shadow-black/40"
             >
-              <Menu size={20} />
+              <div className="flex flex-col p-2 gap-1">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.id}
+                    href={item.href}
+                    onClick={() => handleNavClick(item.href, item.id)}
+                    className={cn(
+                      "px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200",
+                      activeSection === item.id
+                        ? "text-white bg-gradient-to-r from-emerald-500/20 to-teal-500/20"
+                        : "text-slate-400 hover:text-white hover:bg-slate-800/50"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
-      </button>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-full mt-2 right-0 w-48 bg-slate-900/90 backdrop-blur-md border border-slate-800/80 rounded-xl shadow-xl shadow-black/40"
-          >
-            <div className="flex flex-col p-2 gap-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.id}
-                  href={item.href}
-                  onClick={() => handleNavClick(item.href, item.id)}
-                  className={cn(
-                    "px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200",
-                    activeSection === item.id
-                      ? "text-white bg-gradient-to-r from-indigo-500/20 to-purple-500/20"
-                      : "text-slate-400 hover:text-white hover:bg-slate-800/50"
-                  )}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </div>
     </nav>
   );
 };

@@ -52,12 +52,12 @@ const Portfolio = () => {
           viewport={{ once: true }}
         >
           <motion.span
-            className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium text-indigo-300 bg-indigo-500/10 border border-indigo-500/30 rounded-full mb-4"
+            className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+            <span className="w-1.5 h-1.5 rounded-full bg-mint-400" />
             Featured Work
           </motion.span>
           <motion.h2
@@ -90,7 +90,7 @@ const Portfolio = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
         >
-          <div className="flex flex-wrap gap-2 p-1.5 bg-slate-900/40 rounded-full border border-slate-800/60">
+          <div className="flex flex-wrap gap-2 p-1.5 bg-slate-900/40 rounded-full border border-emerald-900/30">
             {projectCategories.map((category) => (
               <motion.button
                 key={category}
@@ -106,7 +106,7 @@ const Portfolio = () => {
                 {activeCategory === category && (
                   <motion.div
                     layoutId="category-indicator"
-                    className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-cyan-500/20"
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-mint-500/20"
                   />
                 )}
                 <span className="relative z-1">{category}</span>
@@ -141,12 +141,12 @@ const Portfolio = () => {
                 >
                   <motion.div
                     layoutId={`project-card-inner-${project.id}`}
-                    className="group relative flex flex-col md:flex-row gap-6 p-6 bg-slate-900/50 backdrop-blur-lg border border-slate-800/80 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_0_40px_-5px_rgba(99,102,241,0.15)]"
+                    className="group relative flex flex-col md:flex-row gap-6 p-6 bg-slate-900/50 backdrop-blur-lg border border-emerald-900/30 rounded-2xl hover:border-emerald-500/50 transition-all duration-300 hover:shadow-[0_0_40px_-5px_rgba(16,185,129,0.15)]"
                     onClick={() => handleProjectClick(project)}
                   >
                     {/* Thumbnail */}
                     <motion.div
-                      className="relative w-full md:w-64 h-40 rounded-xl overflow-hidden border border-slate-800/60 bg-slate-800/30 flex-shrink-0"
+                      className="relative w-full md:w-64 h-40 rounded-xl overflow-hidden border border-emerald-900/30 bg-slate-800/30 flex-shrink-0"
                       whileHover={{ scale: 1.02 }}
                     >
                       {project.thumbnail ? (
@@ -169,7 +169,7 @@ const Portfolio = () => {
                     <div className="flex-1 flex flex-col justify-between">
                       <div>
                         <motion.h3
-                          className="text-xl font-bold text-foreground mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:via-purple-400 group-hover:to-cyan-400 transition-all duration-300"
+                          className="text-xl font-bold text-foreground mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:via-teal-300 group-hover:to-mint-400 transition-all duration-300"
                         >
                           {project.title}
                         </motion.h3>
@@ -206,7 +206,7 @@ const Portfolio = () => {
                           {project.category}
                         </span>
                         <motion.div
-                          className="flex items-center gap-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          className="flex items-center gap-2 text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         >
                           <span className="text-xs font-medium">
                             View Details

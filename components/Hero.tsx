@@ -82,29 +82,45 @@ const Hero = () => {
             className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
             variants={itemVariants}
           >
-            <span className="gradient-text">Crafting Digital</span>
+            <span className="gradient-text">Build It.</span>
             <br className="md:hidden" />{" "}
-            <span className="text-foreground"> Experiences That Move</span>
+            <span className="text-foreground">Secure It.</span>
           </motion.h1>
 
           {/* Role Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-sm font-medium"
+            className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-sm font-medium"
             variants={itemVariants}
           >
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-            Full-Stack Developer & UI/UX Enthusiast
+            <span className="w-2 h-2 rounded-full bg-mint-400 animate-pulse" />
+            Full-Stack Developer & Cybersecurity Engineer
           </motion.div>
 
           {/* Subtitle */}
           <motion.p
-            className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10"
+            className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-8"
             variants={itemVariants}
           >
-            I build performant, visually distinctive web applications with
-            Next.js, Tailwind CSS, and Framer Motion — where engineering meets
-            aesthetic craftsmanship.
+            I develop full-stack web applications and secure them against
+            real-world threats through cybersecurity engineering.
           </motion.p>
+
+          {/* Tech Stack Tags */}
+          <motion.div
+            className="flex flex-wrap justify-center gap-2 mb-10"
+            variants={itemVariants}
+          >
+            {["JavaScript", "PHP", "Python", "Bootstrap", "Tailwind CSS", "Next.js"].map(
+              (tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 text-xs font-medium rounded-full bg-slate-900/40 border border-emerald-900/30 text-slate-300 hover:text-emerald-300 hover:border-emerald-800/40 transition-colors"
+                >
+                  {tech}
+                </span>
+              )
+            )}
+          </motion.div>
 
           {/* CTA Buttons */}
           <motion.div
@@ -117,7 +133,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
-                <span className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 opacity-100 blur group-hover:opacity-90 transition-opacity duration-300" />
+                <span className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-mint-500 opacity-100 blur group-hover:opacity-90 transition-opacity duration-300" />
                 <span className="absolute inset-0.5 rounded-full bg-slate-900" />
                 <span className="relative flex items-center gap-2 text-white">
                   View Projects
@@ -140,11 +156,11 @@ const Hero = () => {
             </Link>
 
             <motion.button
-              className="group relative flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium border border-slate-700 text-slate-300 hover:text-white transition-all duration-300"
+              className="group relative flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium border border-emerald-900/40 text-slate-300 hover:text-white transition-all duration-300"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
-              <span className="absolute inset-0 rounded-full bg-slate-800/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="absolute inset-0 rounded-full bg-emerald-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <Download size={18} className="relative" />
               Download CV
             </motion.button>
@@ -158,7 +174,7 @@ const Hero = () => {
             {statBadges.map((stat) => (
               <motion.div
                 key={stat.label}
-                className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-900/40 border border-slate-800/60 text-slate-300 hover:text-white hover:border-slate-700/50 transition-all duration-300"
+                className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-900/40 border border-emerald-900/30 text-slate-300 hover:text-white hover:border-emerald-800/40 transition-all duration-300"
                 whileHover={{ scale: 1.05, y: -2 }}
               >
                 {stat.icon}
@@ -182,11 +198,11 @@ const Hero = () => {
                 aria-label={social.label}
               >
                 <motion.div
-                  className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-slate-900/40 border border-slate-800/60 text-slate-400 hover:text-white transition-all duration-300 group"
+                  className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-slate-900/40 border border-emerald-900/30 text-slate-400 hover:text-white transition-all duration-300 group"
                   whileHover={{ scale: 1.1, rotate: 2 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-mint-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <span className="relative z-1">{social.icon}</span>
                 </motion.div>
               </Link>

@@ -77,10 +77,10 @@ const About = () => {
         >
           <motion.div
             variants={itemVariants}
-            className="relative flex flex-col md:flex-row items-center gap-8 p-8 bg-slate-900/50 backdrop-blur-lg border border-slate-800/80 rounded-2xl hover:border-indigo-500/50 transition-all duration-300"
+            className="relative flex flex-col md:flex-row items-center gap-8 p-8 bg-slate-900/50 backdrop-blur-lg border border-emerald-900/30 rounded-2xl hover:border-emerald-500/50 transition-all duration-300"
           >
             {/* Avatar Placeholder */}
-            <div className="relative w-48 h-48 rounded-2xl overflow-hidden border border-slate-800/60 bg-slate-800/30 flex-shrink-0">
+            <div className="relative w-48 h-48 rounded-2xl overflow-hidden border border-emerald-900/30 bg-slate-800/30 flex-shrink-0">
               <div className="w-full h-full flex items-center justify-center text-slate-500">
                 <span className="text-4xl font-bold gradient-text opacity-30">AZ</span>
               </div>
@@ -171,7 +171,7 @@ const About = () => {
 
           <div className="max-w-3xl mx-auto relative">
             {/* Vertical Line */}
-            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-slate-700/50 md:ml-px" />
+            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-emerald-900/50 md:ml-px" />
 
             {experiences.map((exp, index) => (
               <ExperienceItem
@@ -222,7 +222,7 @@ const SkillCard = ({
 }) => {
   return (
     <motion.div
-      className="group relative p-4 rounded-xl bg-slate-900/40 border border-slate-800/60 text-slate-300 hover:text-white hover:border-indigo-500/30 transition-all duration-300"
+      className="group relative p-4 rounded-xl bg-slate-900/40 border border-emerald-900/30 text-slate-300 hover:text-white hover:border-emerald-500/50 transition-all duration-300"
       whileHover={{ scale: 1.02, x: 3 }}
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
@@ -230,7 +230,7 @@ const SkillCard = ({
       transition={{ delay: index * 0.05, duration: 0.4 }}
     >
       <div className="flex items-center gap-3">
-        <div className="text-indigo-400 group-hover:text-white transition-colors">
+        <div className="text-emerald-400 group-hover:text-mint-300 transition-colors">
           {skill.icon}
         </div>
         <span className="font-medium">{skill.name}</span>
@@ -238,7 +238,7 @@ const SkillCard = ({
       {skill.level && (
         <div className="mt-2 h-1.5 w-full bg-slate-800/60 rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-indigo-500 to-cyan-400 rounded-full"
+            className="h-full bg-gradient-to-r from-emerald-500 to-mint-400 rounded-full"
             initial={{ width: 0 }}
             whileInView={{ width: `${skill.level}%` }}
             viewport={{ once: true }}
@@ -272,23 +272,23 @@ const ExperienceItem = ({
     >
       {/* Node */}
       <motion.div
-        className="absolute top-0 w-4 h-4 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400 shadow-lg shadow-indigo-500/30 z-10"
+        className="absolute top-0 w-4 h-4 rounded-full bg-gradient-to-r from-emerald-500 to-mint-400 shadow-lg shadow-emerald-500/30 z-10"
         style={{
           left: isEven ? "0" : "100%",
           translateX: isEven ? "0" : "-100%",
         }}
       />
 
-      <div className="p-6 bg-slate-900/50 backdrop-blur-lg border border-slate-800/80 rounded-xl hover:border-indigo-500/50 transition-all duration-300">
+      <div className="p-6 bg-slate-900/50 backdrop-blur-lg border border-emerald-900/30 rounded-xl hover:border-emerald-500/50 transition-all duration-300">
         <div className="flex items-center gap-3 mb-2">
-          <span className="px-3 py-1 text-xs font-medium text-indigo-300 bg-indigo-500/10 border border-indigo-500/30 rounded-full">
+          <span className="px-3 py-1 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
             {experience.period.start} — {experience.period.end}
           </span>
           <h4 className="text-xl font-bold text-foreground">
             {experience.title}
           </h4>
         </div>
-        <p className="text-indigo-400/80 font-medium mb-2">
+        <p className="text-emerald-400/80 font-medium mb-2">
           {experience.company}
         </p>
         <p className="text-slate-400 text-sm leading-relaxed">
@@ -316,7 +316,7 @@ const CertificateCard = ({
       transition={{ delay: index * 0.1, duration: 0.5 }}
     >
       <motion.div
-        className="relative rounded-xl overflow-hidden border border-slate-800/60 bg-slate-900/50 hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.15)]"
+        className="relative rounded-xl overflow-hidden border border-emerald-900/30 bg-slate-900/50 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-[0_0_30px_-5px_rgba(16,185,129,0.15)]"
         whileHover={{ y: -3 }}
       >
         {/* Image/Placeholder */}
@@ -348,7 +348,7 @@ const CertificateCard = ({
               href={certificate.credentialUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 flex items-center gap-1 text-xs text-indigo-400 hover:text-cyan-300 transition-colors"
+              className="mt-3 flex items-center gap-1 text-xs text-emerald-400 hover:text-mint-300 transition-colors"
             >
               View Credential →
             </a>
