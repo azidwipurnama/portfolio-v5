@@ -1,9 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
-import GitHubIcon from "@/components/icons/GitHubIcon";
-import LinkedInIcon from "@/components/icons/LinkedInIcon";
+import { FaGithub, FaLinkedinIn, FaEnvelope } from "react-icons/fa";
 import Link from "next/link";
 import TechRotator from "@/components/TechRotator";
 import type { SocialLink } from "@/types";
@@ -11,21 +9,21 @@ import type { SocialLink } from "@/types";
 const socialLinks: SocialLink[] = [
   {
     name: "GitHub",
-    url: "https://github.com",
-    icon: <GitHubIcon className="w-5 h-5" />,
-    label: "GitHub",
+    url: "https://github.com/username", // TODO: Update with actual GitHub profile URL
+    icon: <FaGithub className="w-5 h-5" />,
+    label: "GitHub profile",
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com",
-    icon: <LinkedInIcon className="w-5 h-5" />,
-    label: "LinkedIn",
+    url: "https://linkedin.com/in/username", // TODO: Update with actual LinkedIn profile URL
+    icon: <FaLinkedinIn className="w-5 h-5" />,
+    label: "LinkedIn profile",
   },
   {
     name: "Email",
-    url: "mailto:hello@example.com",
-    icon: <Mail size={20} />,
-    label: "Email",
+    url: "mailto:your-email@example.com", // TODO: Update with actual email address
+    icon: <FaEnvelope className="w-5 h-5" />,
+    label: "Send email",
   },
 ];
 
@@ -141,33 +139,33 @@ const Hero = () => {
               </motion.span>
             ))}
           </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            className="flex justify-center gap-4"
-            variants={itemVariants}
-          >
-            {socialLinks.map((social) => (
-              <Link
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-              >
-                <motion.div
-                  className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-slate-900/40 border border-emerald-900/30 text-slate-400 hover:text-white transition-all duration-300 group"
-                  whileHover={{ scale: 1.1, rotate: 2 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-mint-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <span className="relative z-1">{social.icon}</span>
-                </motion.div>
-              </Link>
-            ))}
-          </motion.div>
         </motion.div>
       </div>
+
+      {/* Social Links — fixed at bottom of viewport, centered horizontally */}
+      <motion.div
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex justify-center gap-4"
+        variants={itemVariants}
+      >
+        {socialLinks.map((social) => (
+          <Link
+            key={social.name}
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.label}
+          >
+            <motion.div
+              className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-slate-900/40 border border-emerald-900/30 text-slate-400 hover:text-white transition-all duration-300 group"
+              whileHover={{ scale: 1.1, rotate: 2 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-mint-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="relative z-1">{social.icon}</span>
+            </motion.div>
+          </Link>
+        ))}
+      </motion.div>
     </section>
   );
 };
