@@ -51,23 +51,14 @@ const Portfolio = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <motion.span
-            className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full mb-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-mint-400" />
-            Featured Work
-          </motion.span>
           <motion.h2
-            className="text-4xl md:text-5xl font-bold gradient-text mb-4"
+            className="text-4xl md:text-5xl font-bold gradient-text mb-4 mt-4"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.6 }}
           >
-            Selected Projects
+            PROJECT WOTH SHARING
           </motion.h2>
           <motion.p
             className="text-slate-400 max-w-xl mx-auto"
@@ -76,9 +67,7 @@ const Portfolio = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            A curated selection of projects I have built or contributed to.
-            Each represents a unique challenge and solution in modern web
-            development.
+            A running collection of things I've built, broken, and fixed along the way.
           </motion.p>
         </motion.div>
 
