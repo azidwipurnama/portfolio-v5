@@ -81,7 +81,15 @@ const Navbar = () => {
               {activeSection === item.id && (
                 <motion.div
                   layoutId="active-pill"
-                  className="absolute inset-0 rounded-full bg-emerald-500/80"
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    backgroundImage:
+                      activeSection === "home"
+                        ? "linear-gradient(to right, #10b981 0%, transparent 100%)"
+                        : activeSection === "portfolio"
+                        ? "linear-gradient(to right, transparent 0%, #10b981 50%, transparent 100%)"
+                        : "linear-gradient(to right, transparent 0%, #10b981 100%)",
+                  }}
                 />
               )}
               <span className="relative z-1">{item.label}</span>
