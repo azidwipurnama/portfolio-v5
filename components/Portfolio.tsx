@@ -58,7 +58,7 @@ const Portfolio = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.6 }}
           >
-            PROJECT WOTH SHARING
+            PROJECTS WORTH SHARING
           </motion.h2>
           <motion.p
             className="text-slate-400 max-w-xl mx-auto"
@@ -95,7 +95,15 @@ const Portfolio = () => {
                 {activeCategory === category && (
                   <motion.div
                     layoutId="category-indicator"
-                    className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-mint-500/20"
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      backgroundImage:
+                        category === "All"
+                          ? "linear-gradient(to right, #10b981 0%, transparent 100%)"
+                          : category === "UI/UX"
+                          ? "linear-gradient(to right, transparent 0%, #10b981 100%)"
+                          : "linear-gradient(to right, transparent 0%, #10b981 50%, transparent 100%)",
+                    }}
                   />
                 )}
                 <span className="relative z-1">{category}</span>
