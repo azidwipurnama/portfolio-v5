@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import ProjectModal from "./ProjectModal";
 import type { Project } from "@/types";
-import { projects, projectCategories } from "@/lib/data";
+import { projects } from "@/lib/data";
 
 // Tech items reused from TechRotator — same icons, same color classes
 import {
@@ -117,14 +117,8 @@ const itemVariants = {
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState("Projects");
-  const [activeCategory, setActiveCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const filteredProjects = useMemo(() => {
-    if (activeCategory === "All") return projects;
-    return projects.filter((p) => p.category === activeCategory);
-  }, [activeCategory]);
 
   const handleProjectClick = (project: Project) => {
     setSelectedProject(project);
@@ -220,47 +214,6 @@ const Portfolio = () => {
           >
             {activeTab === "Projects" && (
               <>
-                {/* Category Filter Sub-tabs */}
-                <motion.div
-                  className="flex justify-center mb-12"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.15 }}
-                >
-                  <div className="flex flex-wrap gap-2 p-1.5 bg-slate-900/40 rounded-full border border-emerald-900/30">
-                    {projectCategories.map((category) => (
-                      <motion.button
-                        key={category}
-                        onClick={() => setActiveCategory(category)}
-                        className={`relative px-5 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
-                          activeCategory === category
-                            ? "text-white"
-                            : "text-slate-400 hover:text-slate-200"
-                        }`}
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.97 }}
-                      >
-                        {activeCategory === category && (
-                          <motion.div
-                            layoutId="category-indicator"
-                            className="absolute inset-0 rounded-full"
-                            style={{
-                              backgroundImage:
-                                category === "All"
-                                  ? "linear-gradient(to right, #10b981 0%, transparent 100%)"
-                                  : category === "UI/UX"
-                                  ? "linear-gradient(to right, transparent 0%, #10b981 100%)"
-                                  : "linear-gradient(to right, transparent 0%, #10b981 50%, transparent 100%)",
-                            }}
-                          />
-                        )}
-                        <span className="relative z-1">{category}</span>
-                      </motion.button>
-                    ))}
-                  </div>
-                </motion.div>
-
                 {/* Projects Grid */}
                 <motion.div
                   variants={containerVariants}
@@ -269,15 +222,7 @@ const Portfolio = () => {
                   viewport={{ once: true, margin: "-100px" }}
                 >
                   <AnimatePresence mode="wait">
-                    {filteredProjects.length === 0 ? (
-                      <motion.p
-                        className="text-center text-slate-500 py-20"
-                        key="empty"
-                      >
-                        No projects in this category.
-                      </motion.p>
-                    ) : (
-                      filteredProjects.map((project, index) => (
+                    {projects.map((project, index) => (
                         <motion.div
                           key={project.id}
                           layoutId={`project-card-${project.id}`}
@@ -368,10 +313,9 @@ const Portfolio = () => {
                             </div>
                           </motion.div>
                         </motion.div>
-                      ))
-                    )}
-                  </AnimatePresence>
-                </motion.div>
+                      ))}
+                    </AnimatePresence>
+                  </motion.div>
               </>
             )}
 
