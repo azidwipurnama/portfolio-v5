@@ -15,6 +15,7 @@ export interface Project {
   githubUrl?: string;
   featured?: boolean;
   date?: string;
+  status?: "prototype" | "production" | "in-progress";
 }
 
 export type ProjectCategory = "Web App" | "Mobile" | "UI/UX" | "All";
