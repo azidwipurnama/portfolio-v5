@@ -1,10 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { Award } from "lucide-react";
-import { skills, experiences, certificates } from "@/lib/data";
-import type { Skill, Experience, Certificate } from "@/types";
+import { experiences } from "@/lib/data";
+import type { Experience } from "@/types";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -25,17 +23,6 @@ const itemVariants = {
 };
 
 const About = () => {
-  // Group skills by category
-  const frontendSkills = skills.filter((s) => s.category === "Frontend");
-  const backendSkills = skills.filter((s) => s.category === "Backend");
-  const toolsSkills = skills.filter((s) => s.category === "Tools & Cloud");
-
-  const skillCategories = [
-    { title: "Frontend", skills: frontendSkills },
-    { title: "Backend", skills: backendSkills },
-    { title: "Tools & Cloud", skills: toolsSkills },
-  ];
-
   return (
     <section id="about" className="py-24">
       <div className="container mx-auto px-6">
@@ -115,45 +102,6 @@ const About = () => {
           </motion.div>
         </motion.div>
 
-        {/* Tech Stack Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="mb-24"
-        >
-          <motion.h3
-            className="text-2xl font-bold text-foreground text-center mb-12"
-            variants={itemVariants}
-          >
-            Tech Stack
-          </motion.h3>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {skillCategories.map((category, catIndex) => (
-              <motion.div
-                key={category.title}
-                className="space-y-4"
-                variants={itemVariants}
-              >
-                <h4 className="text-lg font-semibold text-slate-300 mb-4">
-                  {category.title}
-                </h4>
-                <div className="flex flex-col gap-3">
-                  {category.skills.map((skill, skillIndex) => (
-                    <SkillCard
-                      key={skill.name}
-                      skill={skill}
-                      index={skillIndex + catIndex * 10}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
         {/* Experience Timeline */}
         <motion.div
           variants={containerVariants}
@@ -183,70 +131,8 @@ const About = () => {
           </div>
         </motion.div>
 
-        {/* Certificates Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <motion.h3
-            className="text-2xl font-bold text-foreground text-center mb-12"
-            variants={itemVariants}
-          >
-            Certificates & Achievements
-          </motion.h3>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {certificates.map((cert, index) => (
-              <CertificateCard
-                key={cert.id}
-                certificate={cert}
-                index={index}
-              />
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
-  );
-};
-
-/* ————————— Skill Card ————————— */
-const SkillCard = ({
-  skill,
-  index,
-}: {
-  skill: Skill;
-  index: number;
-}) => {
-  return (
-    <motion.div
-      className="group relative p-4 rounded-xl bg-slate-900/40 border border-emerald-900/30 text-slate-300 hover:text-white hover:border-emerald-500/50 transition-all duration-300"
-      whileHover={{ scale: 1.02, x: 3 }}
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.05, duration: 0.4 }}
-    >
-      <div className="flex items-center gap-3">
-        <div className="text-emerald-400 group-hover:text-mint-300 transition-colors">
-          {skill.icon}
-        </div>
-        <span className="font-medium">{skill.name}</span>
-      </div>
-      {skill.level && (
-        <div className="mt-2 h-1.5 w-full bg-slate-800/60 rounded-full overflow-hidden">
-          <motion.div
-            className="h-full bg-gradient-to-r from-emerald-500 to-mint-400 rounded-full"
-            initial={{ width: 0 }}
-            whileInView={{ width: `${skill.level}%` }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 + index * 0.05, duration: 0.6 }}
-          />
-        </div>
-      )}
-    </motion.div>
   );
 };
 
@@ -295,66 +181,6 @@ const ExperienceItem = ({
           {experience.description}
         </p>
       </div>
-    </motion.div>
-  );
-};
-
-/* ————————— Certificate Card ————————— */
-const CertificateCard = ({
-  certificate,
-  index,
-}: {
-  certificate: Certificate;
-  index: number;
-}) => {
-  return (
-    <motion.div
-      className="group relative"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-    >
-      <motion.div
-        className="relative rounded-xl overflow-hidden border border-emerald-900/30 bg-slate-900/50 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-[0_0_30px_-5px_rgba(16,185,129,0.15)]"
-        whileHover={{ y: -3 }}
-      >
-        {/* Image/Placeholder */}
-        {certificate.image ? (
-          <div className="relative h-32 rounded-t-xl overflow-hidden bg-slate-800/30">
-            <Image
-              src={certificate.image}
-              alt={certificate.title}
-              fill
-              className="object-cover"
-            />
-          </div>
-        ) : (
-          <div className="h-32 rounded-t-xl bg-slate-800/30 flex items-center justify-center">
-            <Award className="w-8 h-8 text-slate-500" />
-          </div>
-        )}
-
-        <div className="p-4">
-          <h4 className="font-bold text-foreground mb-1 group-hover:gradient-text transition-all duration-300">
-            {certificate.title}
-          </h4>
-          <p className="text-sm text-slate-400 mb-2">{certificate.issuer}</p>
-          <p className="text-xs text-slate-500 line-clamp-2">
-            {certificate.description}
-          </p>
-          {certificate.credentialUrl && (
-            <a
-              href={certificate.credentialUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 flex items-center gap-1 text-xs text-emerald-400 hover:text-mint-300 transition-colors"
-            >
-              View Credential →
-            </a>
-          )}
-        </div>
-      </motion.div>
     </motion.div>
   );
 };
