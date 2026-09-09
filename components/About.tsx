@@ -1,14 +1,21 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { experiences } from "@/lib/data";
-import type { Experience } from "@/types";
+import {
+  Globe,
+  ShieldCheck,
+  Code2,
+  Cpu,
+  Terminal,
+  ChevronRight,
+} from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.2 },
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
   },
 };
 
@@ -21,6 +28,17 @@ const itemVariants = {
     transition: { duration: 0.5 },
   },
 };
+
+/* ——— Terminal line data ——— */
+const terminalLines = [
+  { prompt: "$", command: "whoami" },
+  { prompt: ">", output: "Azi Dwipurnama [Full-Stack & Security Engineer]" },
+  { prompt: "$", command: "cat security_focus.txt" },
+  { prompt: ">", output: "Next.js, API Hardening, Vulnerability Auditing" },
+  { prompt: "$", command: "system_status" },
+  { prompt: ">", output: "[STATUS: OK] 0 Vulnerabilities Found" },
+];
+
 
 const About = () => {
   return (
@@ -54,134 +72,184 @@ const About = () => {
           </motion.p>
         </motion.div>
 
-        {/* Bio Card */}
+        {/* Bento Grid */}
         <motion.div
+          className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mb-16"
         >
+          {/* Card 1 — Main Bio (spans 2 columns) */}
           <motion.div
+            className="md:col-span-2 p-6 bg-[#040D0A]/60 backdrop-blur-md border border-emerald-900/40 rounded-2xl hover:border-emerald-500/50 transition-all duration-300"
             variants={itemVariants}
-            className="relative flex flex-col md:flex-row items-center gap-8 p-8 bg-slate-900/50 backdrop-blur-lg border border-emerald-900/30 rounded-2xl hover:border-emerald-500/50 transition-all duration-300"
           >
-            {/* Avatar Placeholder */}
-            <div className="relative w-48 h-48 rounded-2xl overflow-hidden border border-emerald-900/30 bg-slate-800/30 flex-shrink-0">
-              <div className="w-full h-full flex items-center justify-center text-slate-500">
-                <span className="text-4xl font-bold gradient-text opacity-30">AZ</span>
-              </div>
-            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-4">
+              Bridging Full-Stack Development with Cybersecurity Precision.
+            </h3>
+            <p className="text-slate-300 leading-relaxed mb-4">
+              A Full-Stack Developer with over 3 years of experience building
+              modern web applications using Next.js, TypeScript, and Tailwind
+              CSS. I craft high-performance, visually distinctive interfaces and
+              harden them against real-world threats through cybersecurity
+              engineering — from API hardening to vulnerability auditing.
+            </p>
+            <p className="text-slate-400 text-sm leading-relaxed mb-6">
+              Every line of code I write is held to a secure code standard. I
+              believe great software is not only functional and elegant — it is
+              resilient. My workflow blends clean architecture with threat
+              modeling to deliver applications that perform under pressure and
+              stay secure under attack.
+            </p>
 
-            <div className="flex-1">
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                Let me tell you a story
-              </h3>
-              <p className="text-slate-300 leading-relaxed mb-4">
-                I am a Full-Stack Developer & UI/UX Enthusiast with over 3 years
-                of experience building modern web applications. My journey began
-                with a curiosity about how digital interfaces could be both
-                beautiful and functional — a question that led me deep into
-                code, design systems, and the intersection of art and
-                engineering.
-              </p>
-              <p className="text-slate-300 leading-relaxed mb-4">
-                Today, I specialize in crafting high-performance, visually
-                distinctive experiences using Next.js, TypeScript, and
-                Tailwind CSS. I believe in writing code that is as elegant as
-                the interfaces it produces, and I approach every project with
-                a commitment to accessibility, performance, and pixel-perfect
-                execution.
-              </p>
-              <p className="text-slate-300 leading-relaxed">
-                When I am not coding, you can find me exploring the latest in
-                design systems, contributing to open-source projects, or
-                sharing knowledge with the developer community.
-              </p>
+            {/* Status Badges */}
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
+                <Globe size={14} />
+                Indonesia
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
+                <ShieldCheck size={14} />
+                Secure Code Standard
+              </span>
             </div>
           </motion.div>
-        </motion.div>
 
-        {/* Experience Timeline */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="mb-24"
-        >
-          <motion.h3
-            className="text-2xl font-bold text-foreground text-center mb-12"
+          {/* Card 2 — Terminal Console */}
+          <motion.div
+            className="md:col-span-1 bg-black/90 border border-emerald-500/30 rounded-xl p-4 font-mono text-xs overflow-hidden"
             variants={itemVariants}
           >
-            Experience
-          </motion.h3>
+            {/* Title Bar */}
+            <div className="flex items-center gap-2 mb-4 pb-3 border-b border-emerald-500/20">
+              <Terminal size={14} className="text-emerald-400" />
+              <span className="text-emerald-400 text-xs font-medium tracking-wide uppercase">
+                Terminal
+              </span>
+            </div>
 
-          <div className="max-w-3xl mx-auto relative">
-            {/* Vertical Line */}
-            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-emerald-900/50 md:ml-px" />
+            {/* Terminal Lines */}
+            <div className="space-y-2">
+              {terminalLines.map((line, i) => (
+                <TerminalLine key={i} line={line} delay={i * 0.4} />
+              ))}
+              {/* Blinking cursor */}
+              <div className="flex items-center gap-2 mt-2">
+                <span className="text-emerald-400">$</span>
+                <span className="inline-block w-2 h-4 bg-emerald-400 animate-pulse" />
+              </div>
+            </div>
+          </motion.div>
 
-            {experiences.map((exp, index) => (
-              <ExperienceItem
-                key={exp.id}
-                experience={exp}
-                index={index}
-              />
-            ))}
-          </div>
+          {/* Card 3a — Full-Stack Architecture */}
+          <motion.div
+            className="p-5 bg-[#040D0A]/60 backdrop-blur-md border border-emerald-900/40 rounded-2xl hover:border-emerald-500/50 transition-all duration-300 group"
+            variants={itemVariants}
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:text-emerald-300 transition-colors">
+                <Code2 size={22} />
+              </div>
+              <h4 className="font-bold text-foreground text-sm">
+                Full-Stack Architecture
+              </h4>
+            </div>
+            <p className="text-slate-400 text-xs leading-relaxed">
+              Next.js, TypeScript, Tailwind
+            </p>
+          </motion.div>
+
+          {/* Card 3b — Cybersecurity Engineering */}
+          <motion.div
+            className="p-5 bg-[#040D0A]/60 backdrop-blur-md border border-emerald-900/40 rounded-2xl hover:border-emerald-500/50 transition-all duration-300 group"
+            variants={itemVariants}
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:text-emerald-300 transition-colors">
+                <ShieldCheck size={22} />
+              </div>
+              <h4 className="font-bold text-foreground text-sm">
+                Cybersecurity Engineering
+              </h4>
+            </div>
+            <p className="text-slate-400 text-xs leading-relaxed">
+              Vulnerability Assessment, API Security
+            </p>
+          </motion.div>
+
+          {/* Card 3c — High-Performance Systems */}
+          <motion.div
+            className="p-5 bg-[#040D0A]/60 backdrop-blur-md border border-emerald-900/40 rounded-2xl hover:border-emerald-500/50 transition-all duration-300 group"
+            variants={itemVariants}
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:text-emerald-300 transition-colors">
+                <Cpu size={22} />
+              </div>
+              <h4 className="font-bold text-foreground text-sm">
+                High-Performance Systems
+              </h4>
+            </div>
+            <p className="text-slate-400 text-xs leading-relaxed">
+              Database Optimization, Clean Code
+            </p>
+          </motion.div>
         </motion.div>
-
       </div>
     </section>
   );
 };
 
-/* ————————— Experience Item ————————— */
-const ExperienceItem = ({
-  experience,
-  index,
+/* ——— Terminal Line with typewriter effect ——— */
+const TerminalLine = ({
+  line,
+  delay,
 }: {
-  experience: Experience;
-  index: number;
+  line: { prompt: string; command?: string; output?: string };
+  delay: number;
 }) => {
-  const isEven = index % 2 === 0;
+  const [visible, setVisible] = useState(false);
+  const [typedText, setTypedText] = useState("");
+
+  const text = line.command || line.output || "";
+  const isOutput = line.prompt === ">";
+
+  useEffect(() => {
+    const showTimer = setTimeout(() => setVisible(true), delay * 1000);
+    return () => clearTimeout(showTimer);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!visible) return;
+    if (isOutput) {
+      requestAnimationFrame(() => setTypedText(text));
+      return;
+    }
+    let i = 0;
+    const interval = setInterval(() => {
+      i++;
+      setTypedText(text.slice(0, i));
+      if (i >= text.length) clearInterval(interval);
+    }, 35);
+    return () => clearInterval(interval);
+  }, [visible, text, isOutput]);
+
+  if (!visible) return null;
 
   return (
-    <motion.div
-      className={`relative mb-12 last:mb-0 ${
-        isEven ? "md:text-right md:mr-auto md:ml-8" : "md:ml-auto md:mr-8"
-      }`}
-      initial={{ opacity: 0, x: isEven ? -20 : 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-    >
-      {/* Node */}
-      <motion.div
-        className="absolute top-0 w-4 h-4 rounded-full bg-gradient-to-r from-emerald-500 to-mint-400 shadow-lg shadow-emerald-500/30 z-10"
-        style={{
-          left: isEven ? "0" : "100%",
-          translateX: isEven ? "0" : "-100%",
-        }}
+    <div className="flex items-start gap-2">
+      <ChevronRight
+        size={12}
+        className={`flex-shrink-0 mt-0.5 ${
+          isOutput ? "text-emerald-400/50" : "text-emerald-400"
+        }`}
       />
-
-      <div className="p-6 bg-slate-900/50 backdrop-blur-lg border border-emerald-900/30 rounded-xl hover:border-emerald-500/50 transition-all duration-300">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="px-3 py-1 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
-            {experience.period.start} — {experience.period.end}
-          </span>
-          <h4 className="text-xl font-bold text-foreground">
-            {experience.title}
-          </h4>
-        </div>
-        <p className="text-emerald-400/80 font-medium mb-2">
-          {experience.company}
-        </p>
-        <p className="text-slate-400 text-sm leading-relaxed">
-          {experience.description}
-        </p>
-      </div>
-    </motion.div>
+      <span className={isOutput ? "text-emerald-300" : "text-slate-300"}>
+        <span className="text-emerald-400">{line.prompt} </span>
+        {typedText}
+      </span>
+    </div>
   );
 };
 
