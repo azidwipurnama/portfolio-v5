@@ -9,7 +9,10 @@ import {
   Cpu,
   Terminal,
   ChevronRight,
+  Briefcase,
+  Calendar,
 } from "lucide-react";
+import { experiences } from "@/lib/data";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -196,6 +199,48 @@ const About = () => {
             </p>
           </motion.div>
         </motion.div>
+
+        {/* Experience Section */}
+        <motion.div
+          className="max-w-5xl mx-auto mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <h3 className="text-2xl font-bold text-white flex items-center gap-2 mb-8">
+            <Briefcase size={22} className="text-emerald-400" />
+            Experience
+          </h3>
+
+          <div className="border-l border-emerald-900/60 pl-6 space-y-8">
+            {experiences.map((exp) => (
+              <div key={exp.id} className="relative">
+                {/* Glowing node */}
+                <div className="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500" />
+
+                <div className="bg-[#040D0A]/60 backdrop-blur-md border border-emerald-900/40 rounded-xl p-5 hover:border-emerald-500/50 transition-all duration-300">
+                  <div className="flex flex-wrap items-center gap-3 mb-2">
+                    <h4 className="text-base font-bold text-foreground">
+                      {exp.title}
+                    </h4>
+                    <span className="text-emerald-400/80 text-sm font-medium">
+                      {exp.company}
+                    </span>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 text-xs text-slate-400 mb-3">
+                    <Calendar size={14} />
+                    {exp.period.start} — {exp.period.end}
+                  </span>
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    {exp.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );
