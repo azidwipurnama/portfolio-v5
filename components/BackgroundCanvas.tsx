@@ -25,8 +25,10 @@ const BackgroundCanvas = () => {
   }, []);
 
   // Mouse-following spotlight glow intensity
-  const spotlightOpacity = 0.15 + (mousePosition.x / window.innerWidth) * 0.1;
-  const spotlightScale = 0.9 + (mousePosition.y / window.innerHeight) * 0.3;
+  const windowWidth = typeof window !== "undefined" ? window.innerWidth : 1920;
+  const windowHeight = typeof window !== "undefined" ? window.innerHeight : 1080;
+  const spotlightOpacity = 0.15 + (mousePosition.x / windowWidth) * 0.1;
+  const spotlightScale = 0.9 + (mousePosition.y / windowHeight) * 0.3;
 
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">

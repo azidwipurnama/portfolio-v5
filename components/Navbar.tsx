@@ -75,17 +75,14 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: 10, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 5, scale: 0.95, transition: { duration: 0.15 } }}
-                className="absolute top-full left-0 mt-2 w-max pointer-events-none"
+                className="absolute top-full left-0 mt-2 pointer-events-none"
               >
-                <div className="bg-[#040D0A]/90 backdrop-blur-xl border border-emerald-800/50 p-2 rounded-2xl shadow-2xl z-50">
+                <div className="p-1.5 bg-[#040D0A]/95 backdrop-blur-xl border border-emerald-800/60 rounded-2xl">
                   <img
                     src="/azi.jpeg"
                     alt="AZI Dwipurnama"
-                    className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover border-2 border-emerald-500/50 shadow-xl shadow-emerald-500/20"
+                    className="w-40 h-40 md:w-48 md:h-48 rounded-2xl object-cover border-2 border-emerald-500/50 shadow-2xl shadow-emerald-500/20"
                   />
-                  <p className="text-xs text-emerald-400/70 text-center mt-1">
-                    Full-Stack & Security Engineer
-                  </p>
                 </div>
               </motion.div>
             )}

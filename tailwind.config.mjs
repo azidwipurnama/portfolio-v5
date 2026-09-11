@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
   // Tailwind CSS v4 uses inline @theme blocks in app/globals.css for
   // theme extensions (colors, gradients, keyframes, background patterns).
   // This file documents the design tokens used across the project.
@@ -82,3 +82,5 @@ module.exports = {
 
   plugins: [],
 };
+
+export default config;
