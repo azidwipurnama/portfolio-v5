@@ -17,6 +17,7 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showPhotoPopup, setShowPhotoPopup] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,12 +58,43 @@ const Navbar = () => {
         )}
       >
         {/* Logo — Benar-benar Ujung Kiri */}
-        <Link
-          href="/"
-          className="text-lg md:text-xl font-bold tracking-tight text-white hover:text-emerald-400 transition-colors flex-shrink-0"
+        <div
+          className="relative flex-shrink-0"
+          onMouseEnter={() => setShowPhotoPopup(true)}
+          onMouseLeave={() => setShowPhotoPopup(false)}
         >
-          AZI DWIPURNAMA
-        </Link>
+          <Link
+            href="/"
+            className="text-lg md:text-xl font-bold tracking-tight text-white hover:text-emerald-400 transition-colors"
+          >
+            AZI DWIPURNAMA
+          </Link>
+
+          {/* Floating Photo Card — Hover Popup */}
+          <AnimatePresence>
+            {showPhotoPopup && (
+              <motion.div
+                initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.9 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="absolute top-full left-0 mt-2 w-max"
+              >
+                <div className="bg-[#040D0A]/90 backdrop-blur-xl border border-emerald-800/50 p-2 rounded-2xl shadow-2xl z-50">
+                  <motion.img
+                    src="/azi.jpeg"
+                    alt="AZI Dwipurnama"
+                    className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover border-2 border-emerald-500/50 shadow-xl shadow-emerald-500/20"
+                    whileHover={{ scale: 1.02 }}
+                  />
+                  <p className="text-xs text-emerald-400/70 text-center mt-1">
+                    Full-Stack & Security Engineer
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
         {/* Desktop Nav — Benar-benar Ujung Kanan */}
         <div className="hidden md:flex items-center gap-1">
