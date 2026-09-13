@@ -81,22 +81,26 @@ const About = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
               className="md:col-span-2 p-6 bg-[#040D0A]/60 backdrop-blur-md border border-emerald-900/40 rounded-2xl hover:border-emerald-500/50 transition-all duration-300"
               variants={itemVariants}
             >
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground leading-tight mb-4">
-                Bridging Full-Stack Development with Cybersecurity Precision.
+              <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-4">
+                Building with Code. Thinking with{" "}
+                <span className="gradient-text">Security.</span>
               </h3>
               <p className="text-slate-300 leading-relaxed mb-4">
-                A Full-Stack Developer with over 3 years of experience building
-                modern web applications using Next.js, TypeScript, and Tailwind
-                CSS. I craft high-performance, visually distinctive interfaces and
-                harden them against real-world threats through cybersecurity
-                engineering — from API hardening to vulnerability auditing.
+                I'm a Full-Stack Developer and Cybersecurity Enthusiast
+                passionate about building modern, reliable, and secure digital
+                solutions.
               </p>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                Every line of code I write is held to a secure code standard. I
-                believe great software is not only functional and elegant — it is
-                resilient. My workflow blends clean architecture with threat
-                modeling to deliver applications that perform under pressure and
-                stay secure under attack.
+              <p className="text-slate-300 leading-relaxed mb-4">
+                I enjoy turning ideas into functional web applications while
+                keeping performance, usability, and security in mind. My interests
+                span full-stack development, backend systems, API integration, and
+                cybersecurity.
+              </p>
+              <p className="text-slate-300 leading-relaxed mb-6">
+                I'm constantly learning, experimenting with new technologies, and
+                challenging myself to become a better problem solver. For me,
+                great software is not just about making things work — it's about
+                building solutions that are useful, maintainable, and secure.
               </p>
 
               {/* Status Badges */}
@@ -106,8 +110,12 @@ const About = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
                   Indonesia
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
+                  <Code2 size={14} />
+                  Full-Stack Developer
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
                   <ShieldCheck size={14} />
-                  Secure Code Standard
+                  Cybersecurity Enthusiast
                 </span>
               </div>
             </motion.div>
