@@ -18,7 +18,7 @@ const terminalSteps: TerminalStep[] = [
   {
     command: "whoami",
     runningLabel: "> Running command...",
-    output: "> Azi Dwipurnama [Full-Stack & Security Engineer]",
+    output: "> DWICODE [Full-Stack & Security Engineer]",
   },
   {
     command: "cat security_focus.txt",

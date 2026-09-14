@@ -15,15 +15,15 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Azydw — Full-Stack Developer & UI/UX Enthusiast",
+  title: "DWICODE | Full-Stack & Cybersecurity Engineer",
   description:
     "Crafting modern web experiences with Next.js, TypeScript, and Tailwind CSS.",
   keywords: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Developer"],
-  authors: [{ name: "Azydw" }],
+  authors: [{ name: "DWICODE" }],
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Azydw — Full-Stack Developer",
+    title: "DWICODE | Full-Stack & Cybersecurity Engineer",
     description:
       "Crafting modern web experiences with Next.js, TypeScript, and Tailwind CSS.",
   },

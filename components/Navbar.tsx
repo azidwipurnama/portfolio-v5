@@ -61,11 +61,18 @@ const Navbar = () => {
         <div className="relative flex-shrink-0">
           <Link
             href="/"
-            className="text-lg md:text-xl font-bold tracking-tight text-white hover:text-emerald-400 transition-colors"
+            className="inline-flex items-center text-emerald-400/80 hover:text-emerald-400 transition-colors"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            AZI DWIPURNAMA
+            {/* Terminal Symbol Prompt: >_ */}
+            <span className="text-emerald-400 font-light font-bold mr-1.5">&gt;_</span>
+
+            {/* "DWI" — Tegak & Normal */}
+            <span className="font-extralight not-italic tracking-[0.2em] text-slate-100">DWI</span>
+
+            {/* "CODE" — Tipis & Miring (NO BOLD), emerald glowing */}
+            <span className="font-extralight italic tracking-[0.2em] text-emerald-400">CODE</span>
           </Link>
 
           {/* Floating Photo Card — Hover Popup */}
@@ -75,13 +82,13 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: 10, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 5, scale: 0.95, transition: { duration: 0.15 } }}
-                className="absolute top-full left-0 mt-2 pointer-events-none"
+                className="absolute top-full left-0 mt-3 z-50 pointer-events-none w-52 h-64 md:w-60 md:h-72"
               >
-                <div className="p-1.5 bg-[#040D0A]/95 backdrop-blur-xl border border-emerald-800/60 rounded-2xl">
+                <div className="p-1.5 bg-[#040D0A]/95 backdrop-blur-xl border border-emerald-800/60 rounded-2xl shadow-2xl shadow-emerald-500/20 w-full h-full">
                   <img
                     src="/azi.jpeg"
-                    alt="AZI Dwipurnama"
-                    className="w-40 h-40 md:w-48 md:h-48 rounded-2xl object-cover border-2 border-emerald-500/50 shadow-2xl shadow-emerald-500/20"
+                    alt="DWICODE"
+                    className="rounded-2xl object-cover w-full h-full border-2 border-emerald-500/50 shadow-2xl shadow-emerald-500/30"
                   />
                 </div>
               </motion.div>
