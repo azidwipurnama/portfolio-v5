@@ -66,7 +66,7 @@ const Navbar = () => {
             onMouseLeave={() => setIsHovered(false)}
           >
             {/* Terminal Symbol Prompt: >_ */}
-            <span className="text-emerald-400 font-light font-bold mr-1.5">&gt;_</span>
+            <span className="text-emerald-400 font-mono font-bold mr-1.5">&gt;_</span>
 
             {/* "DWI" — Tegak & Normal */}
             <span className="font-extralight not-italic tracking-[0.2em] text-slate-100">DWI</span>

@@ -1,37 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedinIn, FaEnvelope } from "react-icons/fa";
-import Link from "next/link";
 import TechRotator from "@/components/TechRotator";
-import type { SocialLink } from "@/types";
-
-const socialLinks: SocialLink[] = [
-  {
-    name: "GitHub",
-    url: "https://github.com/username", // TODO: Update with actual GitHub profile URL
-    icon: <FaGithub className="w-5 h-5" />,
-    label: "GitHub profile",
-  },
-  {
-    name: "LinkedIn",
-    url: "https://linkedin.com/in/username", // TODO: Update with actual LinkedIn profile URL
-    icon: <FaLinkedinIn className="w-5 h-5" />,
-    label: "LinkedIn profile",
-  },
-  {
-    name: "Email",
-    url: "mailto:your-email@example.com", // TODO: Update with actual email address
-    icon: <FaEnvelope className="w-5 h-5" />,
-    label: "Send email",
-  },
-];
-
-const stats: { value: string; label: string }[] = [
-  { value: "3+", label: "Years Experience" },
-  { value: "15+", label: "Projects Completed" },
-  { value: "12+", label: "Tech Skills" },
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -93,78 +63,28 @@ const Hero = () => {
           </motion.p>
 
           {/* Tech Rotator (auto-rotate carousel) */}
-          <TechRotator />
-
-          {/* ROW 1 — Actionable Buttons */}
-          <motion.div
-            className="flex justify-center gap-4 mb-8"
-            variants={itemVariants}
-          >
-            <Link href="/#portfolio">
-              <motion.button
-                className="whitespace-nowrap px-8 py-3.5 rounded-full font-medium text-base bg-slate-900/40 border border-emerald-900/30 text-white hover:bg-emerald-900/20 transition-all duration-200"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View Projects
-              </motion.button>
-            </Link>
-
-            <motion.button
-              className="whitespace-nowrap px-8 py-3.5 rounded-full font-medium text-base bg-slate-900/40 border border-emerald-900/30 text-white hover:bg-emerald-900/20 transition-all duration-200"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Download CV
-            </motion.button>
-          </motion.div>
-
-          {/* ROW 2 — Stats (plain text, non-clickable) */}
-          <motion.div
-            className="flex justify-center items-center gap-0.5 mb-12 text-sm"
-            variants={itemVariants}
-          >
-            {stats.map((stat, i) => (
-              <motion.span
-                key={stat.label}
-                className="flex items-center"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 + 0.2 }}
-              >
-                <span className="font-semibold text-emerald-300">{stat.value}</span>
-                <span className="mx-1.5 text-slate-500">·</span>
-                <span className="text-slate-400">{stat.label}</span>
-                {i < stats.length - 1 && <span className="mx-3 text-slate-600/50" />}
-              </motion.span>
-            ))}
+          <motion.div variants={itemVariants}>
+            <TechRotator />
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Social Links — fixed at bottom of viewport, centered horizontally */}
+      {/* Scroll Indicator — fixed at bottom center of Hero */}
       <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex justify-center gap-4"
-        variants={itemVariants}
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.8 }}
       >
-        {socialLinks.map((social) => (
-          <Link
-            key={social.name}
-            href={social.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={social.label}
-          >
-            <motion.div
-              className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-slate-900/40 border border-emerald-900/30 text-slate-400 hover:text-white transition-all duration-300 group"
-              whileHover={{ scale: 1.1, rotate: 2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-mint-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="relative z-1">{social.icon}</span>
-            </motion.div>
-          </Link>
-        ))}
+        <p className="text-[10px] tracking-[0.3em] font-mono text-slate-400 uppercase font-medium mb-2">
+          SCROLL TO EXPLORE
+        </p>
+        <motion.div
+          className="w-[1px] h-10 bg-gradient-to-b from-emerald-400 via-emerald-500/50 to-transparent"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 40, opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+        />
       </motion.div>
     </section>
   );
