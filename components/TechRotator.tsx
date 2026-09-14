@@ -82,9 +82,6 @@ const TechRotator = () => {
           </motion.span>
         </AnimatePresence>
       </div>
-
-      {/* Optional: subtle accent dot */}
-      <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
     </div>
   );
 };

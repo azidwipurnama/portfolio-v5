@@ -29,6 +29,12 @@
 
 /* —————————————— Tailwind Theme Extensions —————————————— */
 @theme inline {
+  /* — Font Families — */
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Outfit", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
   /* — Colors: Emerald & Electric Mint — */
   --color-background: #040d0a;
   --color-foreground: #f8fafc;
@@ -63,11 +69,6 @@
   --animate-flicker: flicker 0.3s infinite alternate;
   --animate-glow: glow 2s ease-in-out infinite;
 
-  /* — Fonts — */
-  --font-sans: "Inter", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* —————————————— Custom Keyframes —————————————— */
@@ -155,6 +156,14 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   opacity: 0.03;
   pointer-events: none;
+}
+
+/* ————— Font Utility Classes ————— */
+.font-heading {
+  font-family: var(--font-heading), var(--font-display-fallback, ui-sans, system-ui, sans-serif);
+}
+.font-body {
+  font-family: var(--font-body), ui-sans, system-ui, sans-serif;
 }
 
 /* ————— Gradient Text Utility (Emerald → Mint) ————— */

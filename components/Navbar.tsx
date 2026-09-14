@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
 import type { NavItem } from "@/types";
 
 const navItems: NavItem[] = [
-  { id: "home", label: "Home", href: "/" },
-  { id: "portfolio", label: "Portfolio", href: "/#portfolio" },
-  { id: "about", label: "About", href: "/#about" },
+  { id: "home", label: "HOME", href: "/" },
+  { id: "portfolio", label: "PORTFOLIO", href: "/#portfolio" },
+  { id: "about", label: "ABOUT", href: "/#about" },
 ];
 
 const Navbar = () => {
@@ -104,7 +104,7 @@ const Navbar = () => {
               href={item.href}
               onClick={() => handleNavClick(item.href, item.id)}
               className={cn(
-                "relative px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-300",
+                "relative px-5 py-2.5 text-sm font-heading font-light tracking-[0.2em] rounded-full transition-all duration-300",
                 activeSection === item.id
                   ? "text-white"
                   : "text-slate-400 hover:text-slate-200"
