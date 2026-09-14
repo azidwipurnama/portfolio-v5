@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 /**
@@ -11,18 +11,35 @@ import { useEffect, useState } from "react";
  *   1. Ambient Gradient Mesh — animated radial glows (emerald, mint, teal)
  *   2. Dot Matrix Grid Overlay — technical depth pattern
  *   3. Noise Texture — tactile premium feel
+ *
+ * Performance-optimized for mobile:
+ *   - Mouse-tracking spotlight disabled on screens < 768px
+ *   - Reduced blob animations and durations on mobile
+ *   - Respects prefers-reduced-motion
  */
 const BackgroundCanvas = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+
+  // Detect mobile + throttle mouse tracking to idle
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
+    if (isMobile || shouldReduceMotion) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [isMobile, shouldReduceMotion]);
 
   // Mouse-following spotlight glow intensity
   const windowWidth = typeof window !== "undefined" ? window.innerWidth : 1920;
@@ -30,63 +47,95 @@ const BackgroundCanvas = () => {
   const spotlightOpacity = 0.15 + (mousePosition.x / windowWidth) * 0.1;
   const spotlightScale = 0.9 + (mousePosition.y / windowHeight) * 0.3;
 
+  // Reduced animation config for mobile / reduced motion
+  const reducedDuration = {
+    long: isMobile ? 20 : 45,
+    medium: isMobile ? 22 : 55,
+    short: isMobile ? 18 : 38,
+  };
+
+  const animationDisabled = isMobile || shouldReduceMotion;
+
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
       {/* —— Layer 1: Ambient Gradient Mesh (animated blob glows) —— */}
       <motion.div
         className="absolute -top-1/2 -left-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-emerald-500/30 via-teal-600/20 to-transparent blur-[100px]"
-        animate={{
-          x: [0, 100, -100, 0],
-          y: [0, -100, 100, 0],
-          scale: [1, 1.1, 0.95, 1],
-        }}
-        transition={{
-          duration: 45,
-          ease: "easeInOut",
-          repeat: Infinity,
-        }}
+        animate={
+          animationDisabled
+            ? {}
+            : {
+                x: [0, 100, -100, 0],
+                y: [0, -100, 100, 0],
+                scale: [1, 1.1, 0.95, 1],
+              }
+        }
+        transition={
+          animationDisabled
+            ? {}
+            : {
+                duration: reducedDuration.long,
+                ease: "easeInOut",
+                repeat: Infinity,
+              }
+        }
       />
 
       <motion.div
         className="absolute -bottom-1/2 -right-1/2 w-[700px] h-[700px] rounded-full bg-gradient-to-tr from-mint-500/25 via-teal-600/15 to-transparent blur-[120px]"
-        animate={{
-          x: [0, -80, 80, 0],
-          y: [0, 120, -120, 0],
-          scale: [1, 0.9, 1.1, 1],
-        }}
-        transition={{
-          duration: 55,
-          ease: "easeInOut",
-          repeat: Infinity,
-          delay: 2,
-        }}
+        animate={
+          animationDisabled
+            ? {}
+            : {
+                x: [0, -80, 80, 0],
+                y: [0, 120, -120, 0],
+                scale: [1, 0.9, 1.1, 1],
+              }
+        }
+        transition={
+          animationDisabled
+            ? {}
+            : {
+                duration: reducedDuration.medium,
+                ease: "easeInOut",
+                repeat: Infinity,
+                delay: 2,
+              }
+        }
       />
 
       <motion.div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-emerald-500/20 via-teal-600/15 to-mint-500/10 blur-[90px]"
-        animate={{
-          x: [0, 50, -50, 0],
-          scale: [1, 1.05, 0.9, 1],
-        }}
-        transition={{
-          duration: 38,
-          ease: "easeInOut",
-          repeat: Infinity,
-          delay: 1,
-        }}
+        animate={
+          animationDisabled
+            ? {}
+            : { x: [0, 50, -50, 0], scale: [1, 1.05, 0.9, 1] }
+        }
+        transition={
+          animationDisabled
+            ? {}
+            : {
+                duration: reducedDuration.short,
+                ease: "easeInOut",
+                repeat: Infinity,
+                delay: 1,
+              }
+        }
       />
 
-      {/* —— Mouse-following spotlight —— */}
-      <motion.div
-        className="absolute w-[400px] h-[400px] rounded-full bg-gradient-to-br from-emerald-500/25 via-teal-500/15 to-transparent blur-[60px] pointer-events-none"
-        style={{
-          x: mousePosition.x - 200,
-          y: mousePosition.y - 200,
-          opacity: spotlightOpacity,
-          scale: spotlightScale,
-        }}
-        transition={{ type: "spring", stiffness: 100, damping: 30 }}
-      />
+      {/* —— Mouse-following spotlight (disabled on mobile / reduced motion) —— */}
+      {!animationDisabled && (
+        <motion.div
+          className="absolute w-[400px] h-[400px] rounded-full bg-gradient-to-br from-emerald-500/25 via-teal-500/15 to-transparent blur-[60px] pointer-events-none"
+          style={{
+            x: mousePosition.x - 200,
+            y: mousePosition.y - 200,
+            opacity: spotlightOpacity,
+            scale: spotlightScale,
+          }}
+          transition={{ type: "spring", stiffness: 100, damping: 30 }}
+        />
+      )}
 
       {/* —— Layer 2: Dot Matrix Grid Overlay —— */}
       <div

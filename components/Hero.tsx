@@ -25,8 +25,9 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-28 md:pt-36 pb-20"
+      className="relative min-h-screen pt-28 md:pt-36 pb-20"
     >
+      {/* Main content (centered vertically) */}
       <div className="relative z-10 container mx-auto px-6 py-12">
         <motion.div
           className="max-w-4xl mx-auto text-center"
@@ -34,11 +35,9 @@ const Hero = () => {
           initial="hidden"
           animate="visible"
         >
-          {/* Hero Headline */}
+          {/* 1. Headline */}
           <motion.h1
             className="text-5xl md:text-6xl lg:text-7xl font-display font-bold gradient-text tracking-tight mb-6 pb-2 leading-tight overflow-visible"
-
-
             variants={itemVariants}
           >
             <span className="gradient-text">Build It.</span>
@@ -46,7 +45,7 @@ const Hero = () => {
             <span className="text-foreground">Secure It.</span>
           </motion.h1>
 
-          {/* Role Badge */}
+          {/* 2. Role Badge */}
           <motion.div
             className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-sm font-medium"
             variants={itemVariants}
@@ -55,7 +54,7 @@ const Hero = () => {
             Full-Stack Developer & Cybersecurity Engineer
           </motion.div>
 
-          {/* Subtitle */}
+          {/* 3. Subtitle */}
           <motion.p
             className="text-lg md:text-xl font-body font-light text-slate-300 tracking-wide max-w-2xl mx-auto mb-8"
             variants={itemVariants}
@@ -64,16 +63,16 @@ const Hero = () => {
             real-world threats through cybersecurity engineering.
           </motion.p>
 
-          {/* Tech Rotator (auto-rotate carousel) */}
+          {/* 4. Tech Rotator */}
           <motion.div variants={itemVariants}>
             <TechRotator />
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll Indicator — fixed at bottom center of Hero */}
+      {/* 5. Scroll Indicator — absolute bottom of Hero section */}
       <motion.div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.8 }}

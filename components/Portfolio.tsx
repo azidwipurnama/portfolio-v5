@@ -172,18 +172,18 @@ const Portfolio = () => {
 
         {/* Parent Tab Navigation */}
         <motion.div
-          className="flex justify-center mb-12"
+          className="flex overflow-x-auto scrollbar-hide gap-2 pb-1 mb-12 md:justify-center"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
         >
-          <div className="flex flex-wrap gap-2 p-1.5 bg-slate-900/40 rounded-full border border-emerald-900/30">
+          <div className="inline-flex items-center gap-2 p-1.5 bg-slate-900/40 rounded-full border border-emerald-900/30">
             {parentTabs.map((tab) => (
               <motion.button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative px-5 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                className={`relative flex-shrink-0 px-5 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
                   activeTab === tab
                     ? "text-white"
                     : "text-slate-400 hover:text-slate-200"
