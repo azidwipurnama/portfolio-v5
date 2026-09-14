@@ -49,7 +49,7 @@ const About = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
             viewport={{ once: true }}
           >
             <motion.h2
-              className="text-4xl md:text-5xl font-display font-bold gradient-text mb-4 pb-2 leading-tight overflow-visible"
+              className="text-4xl md:text-5xl font-display font-bold text-white mb-4 pb-2 leading-tight overflow-visible"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -81,42 +81,43 @@ const About = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
               className="md:col-span-2 p-6 bg-[#040D0A]/60 backdrop-blur-md border border-emerald-900/40 rounded-2xl hover:border-emerald-500/50 transition-all duration-300"
               variants={itemVariants}
             >
-              <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-4">
-                Building with Code. Thinking with{" "}
-                <span className="gradient-text">Security.</span>
-              </h3>
-              <p className="text-slate-300 leading-relaxed mb-4">
-                I'm a Full-Stack Developer and Cybersecurity Enthusiast
-                passionate about building modern, reliable, and secure digital
-                solutions.
-              </p>
-              <p className="text-slate-300 leading-relaxed mb-4">
-                I enjoy turning ideas into functional web applications while
-                keeping performance, usability, and security in mind. My interests
-                span full-stack development, backend systems, API integration, and
-                cybersecurity.
-              </p>
-              <p className="text-slate-300 leading-relaxed mb-6">
-                I'm constantly learning, experimenting with new technologies, and
-                challenging myself to become a better problem solver. For me,
-                great software is not just about making things work — it's about
-                building solutions that are useful, maintainable, and secure.
-              </p>
+              <div className="flex flex-col md:flex-row items-start gap-6">
+                {/* Foto Profil */}
+                <img
+                  src="/azi.jpeg"
+                  alt="DWICODE"
+                  className="w-28 h-28 md:w-32 md:h-32 rounded-2xl object-cover border border-emerald-500/40 shadow-lg shadow-emerald-500/10 flex-shrink-0"
+                />
 
-              {/* Status Badges */}
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
-                  <Globe size={14} />
-                  Indonesia
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
-                  <Code2 size={14} />
-                  Full-Stack Developer
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
-                  <ShieldCheck size={14} />
-                  Cybersecurity Enthusiast
-                </span>
+                {/* Konten Bio */}
+                <div className="flex-1">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-4">
+                    Building with Code. Thinking with{" "}
+                    <span className="gradient-text">Security.</span>
+                  </h3>
+                  <p className="text-slate-300 leading-relaxed mb-4">
+                    Full-Stack Developer & Cybersecurity Enthusiast focused on building modern, high-performance web applications and securing them against real-world threats.
+                  </p>
+                  <p className="text-slate-300 leading-relaxed mb-6">
+                    I blend clean architecture with threat modeling to deliver software that is functional, maintainable, and resilient under attack.
+                  </p>
+
+                  {/* Status Badges */}
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
+                      <Globe size={14} />
+                      Indonesia
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
+                      <Code2 size={14} />
+                      Full-Stack
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
+                      <ShieldCheck size={14} />
+                      Cybersecurity
+                    </span>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
