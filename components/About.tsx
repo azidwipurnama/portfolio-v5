@@ -132,40 +132,38 @@ const About = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
 
           {/* Experience Section */}
           <motion.div
-            className="max-w-5xl mx-auto mt-16"
+            className="max-w-4xl mx-auto mt-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="text-2xl font-bold text-white flex items-center gap-2 mb-8">
-              <Briefcase size={22} className="text-emerald-400" />
+            <h3 className="text-xl font-bold text-white flex items-center gap-2 mb-6">
+              <Briefcase size={18} className="text-emerald-400" />
               Experience
             </h3>
 
-            <div className="border-l border-emerald-900/60 pl-6 space-y-8">
+            <div className="border-l border-emerald-900/50 pl-6 space-y-6">
               {experiences.map((exp) => (
                 <div key={exp.id} className="relative">
                   {/* Glowing node */}
-                  <div className="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500" />
+                  <div className="absolute -left-[13px] top-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500" />
 
-                  <div className="bg-[#040D0A]/60 backdrop-blur-md border border-emerald-900/40 rounded-xl p-5 hover:border-emerald-500/50 transition-all duration-300">
-                    <div className="flex flex-wrap items-center gap-3 mb-2">
-                      <h4 className="text-base font-bold text-foreground">
-                        {exp.title}
-                      </h4>
-                      <span className="text-emerald-400/80 text-sm font-medium">
-                        {exp.company}
-                      </span>
-                    </div>
-                    <span className="inline-flex items-center gap-1.5 text-xs text-slate-400 mb-3">
-                      <Calendar size={14} />
-                      {exp.period.start} — {exp.period.end}
-                    </span>
-                    <p className="text-slate-400 text-sm leading-relaxed">
-                      {exp.description}
-                    </p>
+                  {/* Position & Company */}
+                  <div className="flex items-baseline gap-2 mb-0.5">
+                    <span className="text-sm font-bold text-white">{exp.title}</span>
+                    <span className="text-emerald-400 text-xs font-mono">{exp.company}</span>
                   </div>
+
+                  {/* Period */}
+                  <span className="text-[11px] text-slate-400 font-mono block mb-1">
+                    {exp.period.start} — {exp.period.end}
+                  </span>
+
+                  {/* Description */}
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    {exp.description}
+                  </p>
                 </div>
               ))}
             </div>
