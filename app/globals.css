@@ -34,6 +34,8 @@
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-heading: "Outfit", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Outfit", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   /* — Colors: Emerald & Electric Mint — */
   --color-background: #040d0a;
@@ -161,6 +163,9 @@
 /* ————— Font Utility Classes ————— */
 .font-heading {
   font-family: var(--font-heading), var(--font-display-fallback, ui-sans, system-ui, sans-serif);
+}
+.font-display {
+  font-family: var(--font-display), var(--font-display-fallback, ui-sans, system-ui, sans-serif);
 }
 .font-body {
   font-family: var(--font-body), ui-sans, system-ui, sans-serif;

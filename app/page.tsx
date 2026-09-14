@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Portfolio from "@/components/Portfolio";
 import About from "@/components/About";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   // Reset scroll to top on mount unless a hash is present
@@ -32,6 +33,9 @@ export default function Home() {
         {/* About Section */}
         <About />
       </main>
+
+      {/* Footer */}
+      <Footer />
     </>
   );
 }

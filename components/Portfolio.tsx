@@ -277,8 +277,8 @@ const Portfolio = () => {
 
                           {/* Footer Kartu */}
                           <div className="flex items-center justify-between pt-3 border-t border-emerald-900/30">
-                            <span className="text-[10px] px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono">
-                              {project.status ? project.status.charAt(0).toUpperCase() + project.status.slice(1) : "Live"}
+                            <span className={`text-[11px] px-2.5 py-1 rounded-full bg-emerald-950/40 border border-emerald-800/40 text-emerald-300 ${project.status ? '' : 'hidden'}`}>
+                              {project.status ? project.status.charAt(0).toUpperCase() + project.status.slice(1) : ""}
                             </span>
                             <span className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
                               View Project <ArrowUpRight size={12} />

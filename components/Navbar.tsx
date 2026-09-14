@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
@@ -52,24 +52,17 @@ const Navbar = () => {
     };
   }, []);
 
-  const handleNavClick = (href: string, id: string) => {
-    setActiveSection(id);
-    setIsMobileMenuOpen(false);
+  // Handler standar & aman: menerima event, sectionId, dan tabName secara langsung
+  const handleNavClick = (e: React.MouseEvent, sectionId: string, tabName: string) => {
+    e.preventDefault();
+    setActiveSection(tabName);
 
-    // Hapus hash & scroll ke atas untuk Home
-    if (href === "/" || href === "/#home") {
-      window.history.pushState("", document.title, " ");
+    if (sectionId === "home" || sectionId === "") {
       window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-
-    // Smooth scroll ke section target dengan hash bersih
-    if (href.startsWith("/#")) {
-      const target = href.substring(2);
-      const el = document.getElementById(target);
-      if (el) {
-        window.history.pushState("", document.title, " ");
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      const targetElement = document.getElementById(sectionId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
       }
     }
   };
@@ -87,7 +80,7 @@ const Navbar = () => {
           <Link
             href="/"
             className="inline-flex items-center text-emerald-400/80 hover:text-emerald-400 transition-colors"
-            onClick={() => handleNavClick("/", "home")}
+            onClick={(e) => handleNavClick(e, "home", "Home")}
           >
             {/* Terminal Symbol Prompt: >_ */}
             <span className="text-emerald-400 font-mono font-bold mr-1.5">&gt;_</span>
@@ -106,9 +99,9 @@ const Navbar = () => {
             <Link
               key={item.id}
               href={item.href}
-              onClick={() => handleNavClick(item.href, item.id)}
+              onClick={(e) => handleNavClick(e, item.id, item.label)}
               className={cn(
-                "relative px-5 py-2.5 text-sm font-heading font-light tracking-[0.2em] rounded-full transition-all duration-300",
+                "relative px-5 py-2.5 text-sm font-display font-light tracking-[0.2em] rounded-full transition-all duration-300",
                 activeSection === item.id
                   ? "text-white"
                   : "text-slate-400 hover:text-slate-200"
@@ -179,7 +172,10 @@ const Navbar = () => {
                   <Link
                     key={item.id}
                     href={item.href}
-                    onClick={() => handleNavClick(item.href, item.id)}
+                    onClick={(e) => {
+                      handleNavClick(e, item.id, item.label);
+                      setIsMobileMenuOpen(false);
+                    }}
                     className={cn(
                       "px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200",
                       activeSection === item.id

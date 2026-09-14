@@ -6,7 +6,6 @@ import {
   Globe,
   ShieldCheck,
   Code2,
-  Cpu,
   Briefcase,
   Calendar,
 } from "lucide-react";
@@ -68,119 +67,66 @@ const About = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
             </motion.p>
           </motion.div>
 
-          {/* Bento Grid */}
+          {/* Bento Grid — 2 Card Simetris */}
           <motion.div
-            className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4"
+            className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {/* Card 1 — Main Bio (spans 2 columns) */}
+            {/* Card Kiri — Main Bio (Span 2 Kolom) */}
             <motion.div
-              className="md:col-span-2 p-6 bg-[#040D0A]/60 backdrop-blur-md border border-emerald-900/40 rounded-2xl hover:border-emerald-500/50 transition-all duration-300"
+              className="lg:col-span-2 p-6 bg-[#040D0A]/60 backdrop-blur-md border border-emerald-900/40 rounded-2xl hover:border-emerald-500/50 transition-all duration-300 flex flex-col"
               variants={itemVariants}
             >
-              <div className="flex flex-col md:flex-row items-start gap-6">
-                {/* Foto Profil */}
+              {/* Baris Atas: Foto Kiri + Judul Kanan */}
+              <div className="flex items-center gap-6 mb-5">
                 <img
                   src="/azi.jpeg"
                   alt="DWICODE"
-                  className="w-28 h-28 md:w-32 md:h-32 rounded-2xl object-cover border border-emerald-500/40 shadow-lg shadow-emerald-500/10 flex-shrink-0"
+                  className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover border border-emerald-500/40 flex-shrink-0"
                 />
-
-                {/* Konten Bio */}
-                <div className="flex-1">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-4">
-                    Building with Code. Thinking with{" "}
-                    <span className="gradient-text">Security.</span>
-                  </h3>
-                  <p className="text-slate-300 leading-relaxed mb-4">
-                    Full-Stack Developer & Cybersecurity Enthusiast focused on building modern, high-performance web applications and securing them against real-world threats.
-                  </p>
-                  <p className="text-slate-300 leading-relaxed mb-6">
-                    I blend clean architecture with threat modeling to deliver software that is functional, maintainable, and resilient under attack.
-                  </p>
-
-                  {/* Status Badges */}
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
-                      <Globe size={14} />
-                      Indonesia
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
-                      <Code2 size={14} />
-                      Full-Stack
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
-                      <ShieldCheck size={14} />
-                      Cybersecurity
-                    </span>
-                  </div>
-                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+                  Building with Code. Thinking with{" "}
+                  <span className="gradient-text">Security.</span>
+                </h3>
               </div>
-            </motion.div>
 
-            {/* Card 2 — Terminal Console */}
-            <motion.div
-              className="md:col-span-1"
-              variants={itemVariants}
-            >
-              <AnimatedTerminal />
-            </motion.div>
-
-            {/* Card 3a — Full-Stack Architecture */}
-            <motion.div
-              className="p-5 bg-[#040D0A]/60 backdrop-blur-md border border-emerald-900/40 rounded-2xl hover:border-emerald-500/50 transition-all duration-300 group"
-              variants={itemVariants}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:text-emerald-300 transition-colors">
-                  <Code2 size={22} />
-                </div>
-                <h4 className="font-bold text-foreground text-sm">
-                  Full-Stack Architecture
-                </h4>
-              </div>
-              <p className="text-slate-400 text-xs leading-relaxed">
-                Next.js, TypeScript, Tailwind
+              {/* Baris Tengah: Deskripsi */}
+              <p className="text-slate-300 leading-relaxed mb-6">
+                Full-Stack Developer &amp; Cybersecurity Enthusiast focused on
+                building modern, high-performance web applications and securing
+                them against real-world threats. I blend clean architecture with
+                threat modeling to deliver software that is functional,
+                maintainable, and resilient under attack.
               </p>
+
+              {/* Baris Bawah: Badge/Tag */}
+              <div className="mt-auto flex flex-wrap gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
+                  <Globe size={14} />
+                  Indonesia
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
+                  <Code2 size={14} />
+                  Full-Stack
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 rounded-full">
+                  <ShieldCheck size={14} />
+                  Cybersecurity
+                </span>
+              </div>
             </motion.div>
 
-            {/* Card 3b — Cybersecurity Engineering */}
+            {/* Card Kanan — Interactive Terminal (Span 1 Kolom) */}
             <motion.div
-              className="p-5 bg-[#040D0A]/60 backdrop-blur-md border border-emerald-900/40 rounded-2xl hover:border-emerald-500/50 transition-all duration-300 group"
+              className="lg:col-span-1 flex flex-col"
               variants={itemVariants}
             >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:text-emerald-300 transition-colors">
-                  <ShieldCheck size={22} />
-                </div>
-                <h4 className="font-bold text-foreground text-sm">
-                  Cybersecurity Engineering
-                </h4>
+              <div className="flex-1 bg-[#040D0A]/60 backdrop-blur-md border border-emerald-900/40 rounded-2xl p-4">
+                <AnimatedTerminal />
               </div>
-              <p className="text-slate-400 text-xs leading-relaxed">
-                Vulnerability Assessment, API Security
-              </p>
-            </motion.div>
-
-            {/* Card 3c — High-Performance Systems */}
-            <motion.div
-              className="p-5 bg-[#040D0A]/60 backdrop-blur-md border border-emerald-900/40 rounded-2xl hover:border-emerald-500/50 transition-all duration-300 group"
-              variants={itemVariants}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:text-emerald-300 transition-colors">
-                  <Cpu size={22} />
-                </div>
-                <h4 className="font-bold text-foreground text-sm">
-                  High-Performance Systems
-                </h4>
-              </div>
-              <p className="text-slate-400 text-xs leading-relaxed">
-                Database Optimization, Clean Code
-              </p>
             </motion.div>
           </motion.div>
 
