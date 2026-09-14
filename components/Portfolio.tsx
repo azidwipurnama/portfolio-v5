@@ -148,7 +148,7 @@ const Portfolio = () => {
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-4xl md:text-5xl font-display font-bold gradient-text mb-4 mt-4"
+            className="text-4xl md:text-5xl font-display font-bold gradient-text mb-4 mt-4 pb-2 leading-tight overflow-visible"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

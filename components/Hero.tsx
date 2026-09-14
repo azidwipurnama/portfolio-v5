@@ -36,7 +36,7 @@ const Hero = () => {
         >
           {/* Hero Headline */}
           <motion.h1
-            className="text-5xl md:text-6xl lg:text-7xl font-display font-bold gradient-text tracking-tight mb-6"
+            className="text-5xl md:text-6xl lg:text-7xl font-display font-bold gradient-text tracking-tight mb-6 pb-2 leading-tight overflow-visible"
             variants={itemVariants}
           >
             <span className="gradient-text">Build It.</span>
