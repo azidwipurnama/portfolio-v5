@@ -25,7 +25,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-20"
+      className="relative min-h-screen flex items-center justify-center pt-28 md:pt-36 pb-20"
     >
       <div className="relative z-10 container mx-auto px-6 py-12">
         <motion.div
@@ -37,6 +37,8 @@ const Hero = () => {
           {/* Hero Headline */}
           <motion.h1
             className="text-5xl md:text-6xl lg:text-7xl font-display font-bold gradient-text tracking-tight mb-6 pb-2 leading-tight overflow-visible"
+
+
             variants={itemVariants}
           >
             <span className="gradient-text">Build It.</span>

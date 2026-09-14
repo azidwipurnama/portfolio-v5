@@ -19,33 +19,59 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
+  // IntersectionObserver untuk deteksi section yang aktif
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+    const sectionIds = ["home", "portfolio", "about"];
+    const options: IntersectionObserverInit = {
+      rootMargin: "-40% 0px -60% 0px",
+      threshold: 0,
+    };
 
-      const sections = document.querySelectorAll("section[id]");
-      let current = "home";
+    const observer = new IntersectionObserver((entries) => {
+      let currentFound = "home";
 
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= 150 && rect.bottom >= 150) {
-          current = section.id;
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          currentFound = entry.target.id;
         }
       });
 
-      setActiveSection(current);
-    };
+      setActiveSection(currentFound);
+      setScrolled(window.scrollY > 50);
+    }, options);
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      sectionIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.unobserve(el);
+      });
+    };
   }, []);
 
   const handleNavClick = (href: string, id: string) => {
     setActiveSection(id);
     setIsMobileMenuOpen(false);
+
+    // Hapus hash & scroll ke atas untuk Home
+    if (href === "/" || href === "/#home") {
+      window.history.pushState("", document.title, " ");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    // Smooth scroll ke section target dengan hash bersih
     if (href.startsWith("/#")) {
-      const el = document.getElementById(href.substring(2));
-      el?.scrollIntoView({ behavior: "smooth" });
+      const target = href.substring(2);
+      const el = document.getElementById(target);
+      if (el) {
+        window.history.pushState("", document.title, ` `);
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   };
 
