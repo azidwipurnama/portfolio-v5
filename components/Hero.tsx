@@ -36,7 +36,7 @@ const Hero = () => {
         >
           {/* Hero Headline */}
           <motion.h1
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
+            className="text-5xl md:text-6xl lg:text-7xl font-display font-bold gradient-text tracking-tight mb-6"
             variants={itemVariants}
           >
             <span className="gradient-text">Build It.</span>
@@ -55,7 +55,7 @@ const Hero = () => {
 
           {/* Subtitle */}
           <motion.p
-            className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-8"
+            className="text-lg md:text-xl font-body font-light text-slate-300 tracking-wide max-w-2xl mx-auto mb-8"
             variants={itemVariants}
           >
             I develop full-stack web applications and secure them against

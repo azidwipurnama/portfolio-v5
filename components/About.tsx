@@ -49,7 +49,7 @@ const About = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
             viewport={{ once: true }}
           >
             <motion.h2
-              className="text-4xl md:text-5xl font-bold gradient-text mb-4"
+              className="text-4xl md:text-5xl font-display font-bold gradient-text mb-4"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
